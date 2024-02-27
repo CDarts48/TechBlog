@@ -1,0 +1,31 @@
+{
+  "name": "techblog",
+  "version": "1.0.0",
+  "description": "B blogging",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CDarts48/TechBlog.git"
+  },
+  "keywords": [
+    "Tech"
+  ],
+  "author": "Corey Donahue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CDarts48/TechBlog/issues"
+  },
+  "homepage": "https://github.com/CDarts48/TechBlog#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "sequelize": "^6.37.1",
+    "sessions": "^0.0.2-7"
+  }
+}
