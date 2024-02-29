@@ -26,10 +26,14 @@
       {{#each blog.comments as |comment| }}
       <div class="comment">
         <p>{{comment.text}}</p>
-        <p>Posted by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+        <p>Posted by {{comment.user.name}} 
+          on 
+          {{format_date comment.date_created}}</p>
+      </div>
+      <div class="card-body">
+        <p>{{blogPost.description}}</p>
       </div>
       {{/each}}
     </div>
   </div>
 </div>
-{{/each}}
