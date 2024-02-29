@@ -2,9 +2,9 @@
 const User = require("./Users");
 const BlogPost = require("./BlogPost");
 const Comment = require("./Comment");
-const sessions = require("./sessions");
+const sessions = require("./session.js");
 
-// Sets up relationship between tables and allows me to join them using Sequelize
+// Sets up relationships between tables using Sequelize associations
 User.hasMany(BlogPost, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
@@ -33,5 +33,10 @@ BlogPost.hasMany(Comment, {
   onDelete: "CASCADE",
 });
 
-// Export
-module.exports = { User, BlogPost, Comment };
+// Export modules
+module.exports = {
+  User,
+  BlogPost,
+  Comment,
+  sessions,
+};

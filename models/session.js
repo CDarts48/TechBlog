@@ -1,6 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-const SessionStore = require('connect-session-sequelize')(require('express-session').Store);
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const SessionStore = require("connect-session-sequelize")(
+  require("express-session").Store
+);
 
 class Session extends Model {}
 
@@ -33,7 +35,7 @@ Session.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'session',
+    modelName: "session",
   }
 );
 

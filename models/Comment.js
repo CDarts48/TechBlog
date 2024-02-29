@@ -16,7 +16,7 @@ Comment.init(
       allowNull: false,
     },
     date_created: {
-      type: DataTypes.Date,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
@@ -24,7 +24,7 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user", // 'users' table name
+        model: "user",
         key: "id",
       },
     },
