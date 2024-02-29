@@ -11,6 +11,15 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    comment: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    date_created: {
+      type: DataTypes.Date,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -26,10 +35,6 @@ Comment.init(
         model: "blog", // 'blogs' table name
         key: "id",
       },
-    },
-    comment: {
-      type: DataTypes.TEXT,
-      allowNull: false,
     },
   },
   {
