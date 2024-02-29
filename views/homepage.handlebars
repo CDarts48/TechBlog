@@ -1,17 +1,25 @@
-<!-- Loop over each object in the blogs array -->
+
+<div class="container">
+  <div class="row homepage-main">
+    <!-- Loop over each object in the blogs array -->
 {{#each blogs as |blog| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
+<div class="row mb-4 project card text-dark shadow">
+        <div class="card-header">
     <h2>
         {{!-- create blog id and Name --}}
       <a href="/blog/{{blog.id}}">{{blog.name}}</a>
     </h2>
-    <p>Created by {{blog.user.name}} on {{format_date blog.date_created}}</p>
+    <p>Created by {{blog.user.name}} 
+      on 
+      {{format_date blog.date_created}}</p>
   </div>
-  <div class="col-md-7">
+  <div class="card-body">
     <p>
       {{blog.blogPost}}
     </p>
+    <div class="card-body">
+          <p>{{blogPost.description}}</p>
+        </div>
     {{!-- Add comments section here --}}
     <div class="comments-section">
       <h3>Comments</h3>
