@@ -1,0 +1,7 @@
+[
+    {"name": "Chuck Codester", "userName": "chucklingCoder", "email": "chuck.codester@example.com", "password": "password1"},
+    {"name": "Bobby Tables", "userName": "dropItLikeItsHot", "email": "bobby.tables@example.com", "password": "password2"},
+    {"name": "Java Script", "userName": "caffeinatedCoder", "email": "java.script@example.com", "password": "password3"},
+    {"name": "Al Gorithm", "userName": "complexityMaster", "email": "al.gorithm@example.com", "password": "password4"},
+    {"name": "Ada Lovelace", "userName": "firstProgrammer", "email": "ada.lovelace@example.com", "password": "password5"}
+  ]
