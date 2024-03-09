@@ -7,18 +7,14 @@
         <div class="card-header">
     <h2>
         {{!-- create blog id and Name --}}
-      <a href="/blog/{{blog.id}}">{{blog.name}}</a>
+      <a href="/blog/{{blog.id}}">{{blog.title}}</a>
     </h2>
     <p>Created by {{blog.user.name}} 
       on 
       {{format_date blog.date_created}}</p>
   </div>
-  <div class="card-body">
-    <p>
-      {{blog.blogPost}}
-    </p>
     <div class="card-body">
-          <p>{{blogPost.description}}</p>
+          <p>{{blog.description}}</p>
         </div>
     {{!-- Add comments section here --}}
     <div class="comments-section">
@@ -37,3 +33,4 @@
     </div>
   </div>
 </div>
+{{/each}}

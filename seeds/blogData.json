@@ -1,33 +1,37 @@
 [
-    {
-      "title": "The future of TikTok bans",
-      "description": "Montana's new TikTok ban will see app stores fined $10,000 per day if they make TikTok available to users in Montana after January 1...",
-      "date_created": "October 15, 2021",
-      "user_id": 1
-    },
-    {
-      "title": "An OpenAI alum is building a robot butler for your home",
-      "description": "Prosper Robotics, a startup founded by a former OpenAI employee, is building a household robot that will be able to load and empty the dishwasher, do laundry, clean surfaces and floors, and prepare simple meals...",
-      "date_created": "January 2, 2022",
-      "user_id": 2
-    },
-    {
-      "title": "Vue Vine (GitHub Repo)",
-      "description": "Vue Vine is another style for writing Vue components. It supports writing multiple Vue components in a single file. Vue Vine was designed to provide flexibility when managing Vue components...",
-      "date_created": "May 27, 2023",
-      "user_id": 3
-    },
-    {
-      "title": "Tips for Effective Open Source Contribution: Making Your Mark in the Community",
-      "description": "This post could provide practical tips and strategies for developers looking to contribute to open source projects. It could cover topics such as finding the right project to contribute to, making meaningful contributions, and building relationships within the open source community.",
-      "date_created": "March 8, 2024",
-      "user_id": 4
-    },
-    {
-      "title": "Navigating the Fast-Paced World of Software Development: A Guide to Continuous Learning",
-      "description": "This post could offer practical advice for software developers on how to keep up with the ever-changing landscape of technology. It could discuss strategies for efficient learning, such as setting learning goals, prioritizing resources, and building a personal learning network.",
-      "date_created": "March 8, 2024",
-      "user_id": 5
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "The future of TikTok bans",
+    "description": "Montana's new TikTok ban will see app stores fined $10,000 per day if they make TikTok available to users in Montana after January 1...",
+    "date_created": "2021-10-15T00:00:00.000Z",
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "title": "An OpenAI alum is building a robot butler for your home",
+    "description": "Prosper Robotics, a startup founded by a former OpenAI employee, is building a household robot that will be able to load and empty the dishwasher, do laundry, clean surfaces and floors, and prepare simple meals...",
+    "date_created": "2022-01-02T00:00:00.000Z",
+    "user_id": 2
+  },
+  {
+    "id": 3,
+    "title": "Vue Vine (GitHub Repo)",
+    "description": "Vue Vine is another style for writing Vue components. It supports writing multiple Vue components in a single file. Vue Vine was designed to provide flexibility when managing Vue components...",
+    "date_created": "2023-05-27T00:00:00.000Z",
+    "user_id": 3
+  },
+  {
+    "id": 4,
+    "title": "Tips for Effective Open Source Contribution: Making Your Mark in the Community",
+    "description": "This post could provide practical tips and strategies for developers looking to contribute to open source projects. It could cover topics such as finding the right project to contribute to, making meaningful contributions, and building relationships within the open source community.",
+    "date_created": "2024-03-08T00:00:00.000Z",
+    "user_id": 4
+  },
+  {
+    "id": 5,
+    "title": "Navigating the Fast-Paced World of Software Development: A Guide to Continuous Learning",
+    "description": "This post could offer practical advice for software developers on how to keep up with the ever-changing landscape of technology. It could discuss strategies for efficient learning, such as setting learning goals, prioritizing resources, and building a personal learning network.",
+    "date_created": "2024-03-08T00:00:00.000Z",
+    "user_id": 5
+  }
+]

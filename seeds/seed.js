@@ -1,10 +1,9 @@
-// Imports
 const sequelize = require("../config/connection");
-const { User, Blog, Comment } = require("../models");
+const { User, Blog, Comment, BlogPost } = require("../models");
 
-const userData = require("./users.json");
-const blogData = require("./blogs.json");
-const commentData = require("./comments.json");
+const userData = require("./userData.json");
+const blogData = require("./blogData.json");
+const commentData = require("./commentData.json");
 
 // Seeds database with user data, blog data, and comment data
 const seedDatabase = async () => {
@@ -15,7 +14,7 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  await Blog.bulkCreate(blogData);
+  await BlogPost.bulkCreate(blogData);
 
   await Comment.bulkCreate(commentData);
 

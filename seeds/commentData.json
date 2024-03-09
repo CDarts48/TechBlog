@@ -1,61 +1,61 @@
 [
     {
       "user_id": 1,
-      "post_id": 3,
+      "blog_id": 3,
       "comment": "Great insights into Vue Vine! I've been using it for my projects and it's been a game-changer.",
       "date_created": "2024-03-05"
     },
     {
       "user_id": 1,
-      "post_id": 4,
+      "blog_id": 4,
       "comment": "I found the tips for effective open-source contribution really helpful. Can't wait to start making contributions!",
       "date_created": "2024-02-28"
     },
     {
       "user_id": 2,
-      "post_id": 1,
+      "blog_id": 1,
       "comment": "The future of TikTok bans seems like a controversial topic. It'll be interesting to see how it plays out.",
       "date_created": "2024-03-01"
     },
     {
       "user_id": 2,
-      "post_id": 5,
+      "blog_id": 5,
       "comment": "Navigating the fast-paced world of software development is crucial. Continuous learning is key!",
       "date_created": "2024-02-29"
     },
     {
       "user_id": 3,
-      "post_id": 2,
+      "blog_id": 2,
       "comment": "An OpenAI alum building a robot butler sounds like something out of a sci-fi movie! Can't wait to see it in action.",
       "date_created": "2024-03-03"
     },
     {
       "user_id": 3,
-      "post_id": 5,
+      "blog_id": 5,
       "comment": "Continuous learning is indeed important in software development. Always stay curious!",
       "date_created": "2024-03-02"
     },
     {
       "user_id": 4,
-      "post_id": 1,
+      "blog_id": 1,
       "comment": "The future of TikTok bans could have significant implications for social media regulation.",
       "date_created": "2024-03-06"
     },
     {
       "user_id": 4,
-      "post_id": 3,
+      "blog_id": 3,
       "comment": "Vue Vine looks promising! I'll definitely check it out for my Vue.js projects.",
       "date_created": "2024-03-04"
     },
     {
       "user_id": 5,
-      "post_id": 2,
+      "blog_id": 2,
       "comment": "Mastering data structures is crucial for any software engineer. It forms the foundation of efficient algorithms.",
       "date_created": "2024-03-07"
     },
     {
       "user_id": 5,
-      "post_id": 4,
+      "blog_id": 4,
       "comment": "Effective open-source contribution is a great way to give back to the community and enhance one's skills.",
       "date_created": "2024-03-08"
     }

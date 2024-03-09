@@ -1,31 +1,21 @@
-// Imports
-const sequelize = require("../config/connection");
-const { User, BlogPost, Comment } = require("../models");
+const newPostHandler = async (e) => {
+  e.preventDefault();
 
-const userData = require("./userData.json");
-const blogPostData = require("./blogPostData.json");
-const commentData = require("./commentData.json");
-
-// Seeds database with user data, blogPost data, and comment data
-const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
-
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
-
-  for (const blogPost of blogPostData) {
-    await BlogPost.create({
-      ...blogPost,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
+  const title = document.querySelector("#titleInput").value.trim();
+  const description = document.querySelector("#bodyInput").value.trim();
+  if (title && description) {
+    const response = await fetch("/api/blogs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, description }),
     });
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Error check console");
+    }
   }
-
-  const comments = await Comment.bulkCreate(commentData);
-
-  process.exit(0);
 };
-
-// Function call to seed database
-seedDatabase();
+document
+  .querySelector(".createBlogPost")
+  .addEventListener("submit", newPostHandler);

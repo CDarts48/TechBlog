@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { Blog, User, Comment } = require("../models/Users");
+const { BlogPost, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const blogData = await Blog.findAll({
+    const blogData = await BlogPost.findAll({
       include: [
         {
           model: User,
@@ -50,17 +50,17 @@ router.get("/blog/:id", async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get("public/js/dashboard.js", withAuth, async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
-      include: [{ model: Project }],
+      include: [{ model: BlogPost }],
     });
 
     const user = userData.get({ plain: true });
 
-    res.render("public/js/dashboard.js", {
+    res.render("dashboard", {
       ...user,
       logged_in: true,
     });
@@ -72,11 +72,16 @@ router.get("public/js/dashboard.js", withAuth, async (req, res) => {
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("public/js/dashboard.js");
+    res.redirect("/dashboard");
     return;
   }
 
   res.render("login");
+});
+
+router.get("/create", withAuth, (req, res) => {
+  //
+  res.render("create");
 });
 
 module.exports = router;
