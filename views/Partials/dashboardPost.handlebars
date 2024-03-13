@@ -6,16 +6,20 @@
         <h2><a href="/blogPost/{{id}}">{{title}}</a></h2>
         <p>Created by {{user.name}} on {{format_date date_created}}</p>
         <p>{{description}}</p>
-        <button
-          class="btn btn-dark"
-          id="editBtn"
-          data-id="{{id}}"
-        >Edit</button>
-        <button
-          class="btn btn-dark"
-          id="deleteBtn"
-          data-id="{{id}}"
-        >Delete</button>
+        {{#if logged_in}}
+          {{#if_eq user.id current_user_id}}
+            <button
+              class="btn btn-dark"
+              id="editBtn"
+              data-id="{{id}}"
+            >Edit</button>
+            <button
+              class="btn btn-dark"
+              id="deleteBtn"
+              data-id="{{id}}"
+            >Delete</button>
+          {{/if_eq}}
+        {{/if}}
       </div>
     </div>
   </div>

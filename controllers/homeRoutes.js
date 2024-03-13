@@ -32,15 +32,6 @@ router.get("/blog/:id", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
-        {
-          model: Comment,
-          include: [
-            {
-              model: User,
-              attributes: ["name"],
-            },
-          ],
-        },
       ],
     });
 
@@ -54,6 +45,25 @@ router.get("/blog/:id", async (req, res) => {
     res.render("partials/dashboardPost", {
       ...blog,
       logged_in: req.session.logged_in,
+      current_user_id: req.session.user_id, // Add this line
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: BlogPost }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render("dashboard", {
+      ...user,
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
