@@ -2,6 +2,22 @@ const router = require("express").Router();
 const { BlogPost } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// Rout to get routes
+router.get("/:id", async (req, res) => {
+  try {
+    const blogPostData = await BlogPost.findByPk(req.params.id);
+
+    if (!blogPostData) {
+      res.status(404).json({ message: "No blog post found with this id!" });
+      return;
+    }
+
+    res.status(200).json(blogPostData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Route to create a new  blog post
 router.post("/", withAuth, async (req, res) => {
   try {
