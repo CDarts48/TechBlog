@@ -2,6 +2,20 @@ const router = require("express").Router();
 const { BlogPost } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// Route to create a new  blog post
+router.post("/", withAuth, async (req, res) => {
+  try {
+    const newBlog = await BlogPost.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newBlog);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 // Rout to get routes
 router.get("/:id", async (req, res) => {
   try {
@@ -15,20 +29,6 @@ router.get("/:id", async (req, res) => {
     res.status(200).json(blogPostData);
   } catch (err) {
     res.status(500).json(err);
-  }
-});
-
-// Route to create a new  blog post
-router.post("/", withAuth, async (req, res) => {
-  try {
-    const newBlog = await BlogPost.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-
-    res.status(200).json(newBlog);
-  } catch (err) {
-    res.status(400).json(err);
   }
 });
 

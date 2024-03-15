@@ -4,13 +4,13 @@ const newPostHandler = async (e) => {
   const title = document.querySelector("#titleInput").value.trim();
   const description = document.querySelector("#bodyInput").value.trim();
   if (title && description) {
-    const response = await fetch("/api/blogs", {
+    const response = await fetch("/api/blogRoutes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, description }),
     });
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.replace("/create");
     } else {
       alert("Error check console");
     }
