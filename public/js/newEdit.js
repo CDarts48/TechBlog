@@ -21,7 +21,7 @@ const submitNewEdit = async (event) => {
     console.log(blogId);
     console.log(response);
     if (response.ok) {
-      document.location.assign(`/blogPosts/${blogId}`);
+      document.location.assign("/dashboard");
     } else {
       alert(response.status);
     }
