@@ -80,8 +80,35 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/create", withAuth, (req, res) => {
-  //
   res.render("create");
+});
+
+router.get("/create/:id", async (req, res) => {
+  try {
+    const blogData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["name"],
+        },
+      ],
+    });
+
+    if (!blogData) {
+      res.status(404).json({ message: "No blog post found with this id!" });
+      return;
+    }
+
+    const blog = blogData.get({ plain: true });
+
+    res.render("edit", {
+      ...blog,
+      logged_in: req.session.logged_in,
+      current_user_id: req.session.user_id,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
