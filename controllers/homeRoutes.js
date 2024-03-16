@@ -4,6 +4,7 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
+    // Get all projects and JOIN with user data
     const blogData = await BlogPost.findAll({
       include: [
         {
@@ -13,8 +14,10 @@ router.get("/", async (req, res) => {
       ],
     });
 
+    // Serialize data so the template can read it
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
 
+    // Pass serialized data and session flag into template
     res.render("homepage", {
       blogs,
       logged_in: req.session.logged_in,
@@ -26,7 +29,7 @@ router.get("/", async (req, res) => {
 
 router.get("/blog/:id", async (req, res) => {
   try {
-    const blogData = await BlogPost.findByPk(req.params.id, {
+    const blogData = await Blog.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -35,25 +38,21 @@ router.get("/blog/:id", async (req, res) => {
       ],
     });
 
-    if (!blogData) {
-      res.status(404).json({ message: "No blog post found with this id!" });
-      return;
-    }
+    const project = blogData.get({ plain: true });
 
-    const blog = blogData.get({ plain: true });
-
-    res.render("partials/dashboardPost", {
-      ...blog,
+    res.render("blog", {
+      ...project,
       logged_in: req.session.logged_in,
-      current_user_id: req.session.user_id, // Add this line
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+// Use withAuth middleware to prevent access to route
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
+    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: BlogPost }],
@@ -71,6 +70,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
+  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect("/dashboard");
     return;
@@ -79,32 +79,9 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/create/:id", async (req, res) => {
-  try {
-    const blogData = await BlogPost.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ["name"],
-        },
-      ],
-    });
-
-    if (!blogData) {
-      res.status(404).json({ message: "No blog post found with this id!" });
-      return;
-    }
-
-    const blog = blogData.get({ plain: true });
-
-    res.render("edit", {
-      ...blog,
-      logged_in: req.session.logged_in,
-      current_user_id: req.session.user_id,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+router.get("/create", withAuth, (req, res) => {
+  //
+  res.render("create");
 });
 
 module.exports = router;
