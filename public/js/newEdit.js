@@ -1,6 +1,6 @@
 let blogPost = window.location.pathname.split("/");
 const submitButton = document.getElementById("submitNewEdit");
-const blogId = submitButton.getAttribute("data-blog-id");
+const blogId = submitButton.dataset.blogId;
 
 const submitNewEdit = async (event) => {
   event.preventDefault();

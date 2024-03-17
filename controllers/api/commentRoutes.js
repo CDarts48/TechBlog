@@ -2,23 +2,38 @@
 const router = require("express").Router();
 const { BlogPost, Comment, User } = require("../../models");
 
+// Middleware to ensure user is authenticated
+function ensureAuthenticated(req, res, next) {
+  if (req.session.user_id) {
+    next();
+  } else {
+    res.status(403).json({ message: "You must be logged in to do that." });
+  }
+}
+
 // CREATE Comment
-router.post("/", async (req, res) => {
+router.post("/", ensureAuthenticated, async (req, res) => {
   try {
-    console.log("we made it");
     const comment = await Comment.create({
       comment: req.body.comment_body,
       blog_id: req.body.blogPost_id,
-      user_id: req.session.user_id || req.body.user_id,
+      user_id: req.session.user_id,
     });
 
-    res.status(200).json(comment);
+    // Return the comment and user data
+    const user = await User.findByPk(req.session.user_id);
+    res.json({
+      comment_body: comment.comment,
+      date_created: comment.createdAt,
+      user: {
+        name: user.username,
+      },
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
   }
 });
-
 // READ all Comments
 router.get("/", async (req, res) => {
   try {
@@ -76,6 +91,39 @@ router.delete("/:id", async (req, res) => {
     }
     res.status(200).json(comment);
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// READ a single BlogPost with its Comments and User data
+router.get("/:id", async (req, res) => {
+  try {
+    const blogPostData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ["username"],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!blogPostData) {
+      res.status(404).json({ message: "No blog post found with this id!" });
+      return;
+    }
+
+    res.status(200).json(blogPostData);
+  } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });
