@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 
 router.get("/blog/:id", async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id, {
+    const blogData = await BlogPost.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -40,7 +40,7 @@ router.get("/blog/:id", async (req, res) => {
 
     const project = blogData.get({ plain: true });
 
-    res.render("blog", {
+    res.render("blogPost", {
       ...project,
       logged_in: req.session.logged_in,
     });
