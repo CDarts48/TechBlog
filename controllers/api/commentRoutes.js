@@ -14,6 +14,10 @@ function ensureAuthenticated(req, res, next) {
 // CREATE Comment
 router.post("/", ensureAuthenticated, async (req, res) => {
   try {
+    // Log the request body and session
+    console.log("Request body:", req.body);
+    console.log("Session:", req.session);
+
     const comment = await Comment.create({
       comment: req.body.comment_body,
       blog_id: req.body.blogPost_id,
@@ -56,26 +60,26 @@ router.get("/", async (req, res) => {
 });
 
 // UPDATE Comment
-router.put("/:id", async (req, res) => {
-  try {
-    const updatedComment = await Comment.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const updatedComment = await Comment.update(req.body, {
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
 
-    if (!updatedComment[0]) {
-      res.status(400).json({ message: "No comment found with that id!" });
-      return;
-    }
+//     if (!updatedComment[0]) {
+//       res.status(400).json({ message: "No comment found with that id!" });
+//       return;
+//     }
 
-    console.log("Comment updated!");
-    res.status(200).json(updatedComment);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-});
+//     console.log("Comment updated!");
+//     res.status(200).json(updatedComment);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // DELETE Comment
 router.delete("/:id", async (req, res) => {
@@ -121,7 +125,11 @@ router.get("/:id", async (req, res) => {
       return;
     }
 
-    res.status(200).json(blogPostData);
+    // Log the blog post data to the console
+    console.log(blogPostData.get({ plain: true }));
+
+    // Render the 'blog-post' view and pass the blog post data to it
+    res.render("blog-post", { blogPost: blogPostData.get({ plain: true }) });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
