@@ -12,27 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({
-  helpers: {
-    if_eq: function (a, b, opts) {
-      if (a == b) {
-        return opts.fn(this);
-      } else {
-        return opts.inverse(this);
-      }
-    },
-    ...helpers, // your existing helpers
-  },
-});
+const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: "Super secret secret",
-  cookie: {
-    maxAge: 300000,
-    httpOnly: true,
-    secure: false,
-    sameSite: "strict",
-  },
+  cookie: {},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -52,6 +36,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on Port ${PORT}`));
-});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Now listening on Port ${PORT}`));
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
